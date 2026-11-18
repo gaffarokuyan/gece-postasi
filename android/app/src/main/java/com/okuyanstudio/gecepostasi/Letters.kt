@@ -279,6 +279,6 @@ fun FitText(text: String, modifier: Modifier, style: TextStyle) {
         val maxW = constraints.maxWidth
         val w = remember(text, style, maxW) { tm.measure(text, style, maxLines = 1, softWrap = false).size.width }
         val sc = if (w > maxW && w > 0) maxOf(.72f, maxW.toFloat() / w) else 1f
-        BasicText(text, style = style.copy(fontSize = style.fontSize * sc), maxLines = 1, overflow = TextOverflow.Ellipsis, softWrap = false)
+        BasicText(text, Modifier.fillMaxWidth(), style = style.copy(fontSize = style.fontSize * sc), maxLines = 1, overflow = TextOverflow.Ellipsis, softWrap = false)
     }
 }

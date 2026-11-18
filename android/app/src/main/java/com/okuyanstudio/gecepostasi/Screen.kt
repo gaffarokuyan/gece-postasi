@@ -187,10 +187,12 @@ private fun Desk(st: AppState, table: Table, modifier: Modifier) {
     val pal = LocalPal.current; val f = LocalFonts.current; val s = st.s
     val g = st.g; val cur = st.cur
     Box(modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            BoxWithConstraints(Modifier.fillMaxWidth()) {
-                val small = maxHeight < 0.dp
-                val w = minOf(maxWidth, 400.dp)
+        Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+            BoxWithConstraints(Modifier.fillMaxWidth().weight(1f)) {
+                // shrink the letter when the notice / choice bar need room, so nothing gets squeezed
+                val extra = (if (g?.moved != null && cur != null) 84.dp else 0.dp) +
+                    (if (st.choiceOn) 190.dp else 64.dp) + (if (g != null && g.timeMax > 0f) 16.dp else 0.dp)
+                val w = minOf(maxWidth, 400.dp, (maxHeight - extra - 12.dp) * 1.5f).coerceAtLeast(220.dp)
                 Column(Modifier.align(Alignment.Center).width(w), horizontalAlignment = Alignment.CenterHorizontally) {
                     // candle (hard mode)
                     if (g != null && cur != null && g.timeMax > 0f) {
@@ -304,7 +306,7 @@ private fun ChoiceBar(st: AppState, table: Table, cur: Letter) {
                     horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center
                 ) {
                     BasicText(if (note) s.ui("optNote") else s.ui("optRule"), style = TextStyle(color = col, fontFamily = f.ui, fontWeight = FontWeight.SemiBold, fontSize = 12.sp))
-                    BasicText(if (k == "iade") s.ui("iade") else s.street(k), style = TextStyle(color = pal.onDesk, fontFamily = f.ui, fontWeight = FontWeight.Bold, fontSize = 15.sp, textAlign = TextAlign.Center))
+                    FitText(if (k == "iade") s.ui("iade") else s.street(k), Modifier.fillMaxWidth(), TextStyle(color = pal.onDesk, fontFamily = f.ui, fontWeight = FontWeight.Bold, fontSize = 15.sp, textAlign = TextAlign.Center))
                 }
             }
         }

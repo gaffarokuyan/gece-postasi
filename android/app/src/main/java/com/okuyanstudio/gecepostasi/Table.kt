@@ -23,6 +23,7 @@ val EaseFly = CubicBezierEasing(.55f, 0f, .8f, .35f)
 
 /** The physical desk: letter position, drag, postmark and fly-to-slot animations. */
 class Table(private val st: AppState, private val scope: CoroutineScope, private val dp: Float) {
+    companion object { /** for store screenshots: show letters without the deal animation */ var instant = false }
     val ox = Animatable(0f); val oy = Animatable(0f); val rot = Animatable(0f); val scl = Animatable(1f); val alpha = Animatable(1f)
     var cardCoords: LayoutCoordinates? = null
     var stampCoords: LayoutCoordinates? = null
@@ -39,6 +40,7 @@ class Table(private val st: AppState, private val scope: CoroutineScope, private
 
     suspend fun dealIn() {
         pm = null; pmAnim.snapTo(0f)
+        if (instant) { ox.snapTo(0f); oy.snapTo(0f); rot.snapTo(0f); scl.snapTo(1f); alpha.snapTo(1f); return }
         ox.snapTo(-16 * dp); oy.snapTo(-46 * dp); rot.snapTo(-6f); scl.snapTo(1f); alpha.snapTo(0f)
         coroutineScope {
             val t = tween<Float>(340, easing = EaseOutBack)
