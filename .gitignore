@@ -1,0 +1,11 @@
+node_modules/
+.gradle/
+.kotlin/
+build/
+android/app/build/
+android/local.properties
+android/app/src/test/snapshots/
+*.keystore
+*.jks
+credentials.json
+android/app/eas-build-*.gradle

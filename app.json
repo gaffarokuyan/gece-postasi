@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "Gece Postası",
+    "slug": "gece-postasi",
+    "version": "1.0.0",
+    "owner": "gaffardevs-team",
+    "android": {
+      "package": "com.okuyanstudio.gecepostasi",
+      "versionCode": 1
+    }
+  }
+}

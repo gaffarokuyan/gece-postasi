@@ -1,0 +1,16 @@
+{
+  "cli": { "version": ">= 16.0.0", "appVersionSource": "remote" },
+  "build": {
+    "production": {
+      "android": { "image": "latest", "buildType": "app-bundle", "config": "android-native.yml" },
+      "autoIncrement": true
+    },
+    "preview": {
+      "android": { "image": "latest", "buildType": "apk", "config": "android-native-apk.yml" },
+      "distribution": "internal"
+    }
+  },
+  "submit": {
+    "production": { "android": { "track": "internal", "releaseStatus": "draft" } }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "gece-postasi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gece Postası — native Android (Kotlin + Jetpack Compose). Built with EAS custom build."
+}

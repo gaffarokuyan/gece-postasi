@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.GecePostasi" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/desk</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+    <color name="desk">#072146</color>
+    <color name="paper">#F1EEE5</color>
+    <color name="green">#00915C</color>
+</resources>
