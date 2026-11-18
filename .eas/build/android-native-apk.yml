@@ -1,0 +1,14 @@
+build:
+  name: Gece Postası (native Kotlin) — test APK
+  steps:
+    - eas/checkout
+    - eas/inject_android_credentials
+    - eas/configure_android_version
+    - run:
+        name: Make gradlew executable
+        working_directory: android
+        command: chmod +x gradlew
+    - eas/run_gradle:
+        inputs:
+          command: :app:assembleRelease
+    - eas/find_and_upload_build_artifacts

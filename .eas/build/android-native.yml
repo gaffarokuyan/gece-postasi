@@ -1,0 +1,14 @@
+build:
+  name: Gece Postası (native Kotlin) — Play Store AAB
+  steps:
+    - eas/checkout
+    - eas/inject_android_credentials
+    - eas/configure_android_version
+    - run:
+        name: Make gradlew executable
+        working_directory: android
+        command: chmod +x gradlew
+    - eas/run_gradle:
+        inputs:
+          command: :app:bundleRelease
+    - eas/find_and_upload_build_artifacts
